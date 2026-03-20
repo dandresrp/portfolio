@@ -1,0 +1,69 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+import { getTranslation, toLocale } from '../i18n/ui';
+import { getProjects } from '../i18n/projects';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const t = getTranslation(toLocale(locale));
+const projects = getProjects(toLocale(locale));
+const { projects: copy } = t;
+---
+
+<section
+  id={locale === 'en' ? 'projects' : 'proyectos'}
+  class="projects"
+  aria-label={copy.label}
+>
+  <div class="projects__inner">
+
+    <SectionHeading
+      label={copy.label}
+      title={copy.title}
+      subtitle={copy.subtitle}
+    />
+
+    <div class="projects__grid">
+      {projects.map((project) => (
+        <ProjectCard project={project} locale={locale} />
+      ))}
+    </div>
+
+  </div>
+</section>
+
+<style>
+  .projects {
+    padding: 6rem 1.5rem;
+  }
+
+  .projects__inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── Grid ──────────────────────────────────────────────────────── */
+  .projects__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .projects__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    /* Last card (5th) spans full width if odd count */
+    .projects__grid > :last-child:nth-child(odd) {
+      grid-column: 1 / -1;
+      max-width: calc(50% - 0.625rem);
+    }
+  }
+</style>
