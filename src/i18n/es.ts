@@ -83,9 +83,9 @@ const es = {
 
   // ─── CTA ───────────────────────────────────────────────────────────
   cta: {
-    title:    '¿Tienes un proyecto en mente?',
-    subtitle: 'Estoy disponible para proyectos freelance. Trabajemos juntos.',
-    button:   'Contáctame',
+    title:    '¿Tienes un proyecto interesante?',
+    subtitle: 'Me gusta conectar con gente que construye cosas. Escríbeme.',
+    button:   'Ponerse en contacto',
     buttonHref: '#contacto',
   },
 
@@ -93,7 +93,7 @@ const es = {
   contact: {
     label:    'Contacto',
     title:    'Hablemos.',
-    subtitle: 'Puedo ayudarte con tu próximo proyecto o mejorar tu sistema actual.',
+    subtitle: 'Ya sea para hablar de un proyecto, una idea, o simplemente conectar.',
     email:    'darp_0703@outlook.com',
     whatsapp: '+504 9886-6603',
     whatsappHref: 'https://wa.me/50498866603',

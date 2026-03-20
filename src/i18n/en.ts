@@ -85,9 +85,9 @@ const en: TranslationKeys = {
 
   // ─── CTA ───────────────────────────────────────────────────────────
   cta: {
-    title:      'Have a project in mind?',
-    subtitle:   'I am available for freelance projects. Let\'s work together.',
-    button:     'Contact me',
+    title:      'Working on something interesting?',
+    subtitle:   'I enjoy connecting with people who build things. Feel free to reach out.',
+    button:     'Get in touch',
     buttonHref: '#contact',
   },
 
@@ -95,7 +95,7 @@ const en: TranslationKeys = {
   contact: {
     label:    'Contact',
     title:    'Let\'s talk.',
-    subtitle: 'I can help with your next project or improve your current system.',
+    subtitle: 'Whether it\'s about a project, an idea, or just to connect.',
     email:    'darp_0703@outlook.com',
     whatsapp: '+504 9886-6603',
     whatsappHref: 'https://wa.me/50498866603',
