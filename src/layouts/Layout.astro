@@ -81,6 +81,32 @@ const canonical   = locale === 'es' ? canonicalES : canonicalEN;
   </head>
 
   <body>
+    <!-- Skip to content (accessibility) -->
+    <a href="#main-content" class="skip-link">
+      {locale === 'es' ? 'Saltar al contenido' : 'Skip to content'}
+    </a>
+
     <slot />
+
+    <!-- Scroll-reveal: IntersectionObserver activates .reveal elements -->
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      );
+
+      // Observe all .reveal elements — including those inside hero
+      // Hero elements should animate on load, so we trigger them immediately
+      document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => {
+        observer.observe(el);
+      });
+    </script>
   </body>
 </html>

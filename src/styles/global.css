@@ -132,7 +132,21 @@ h1, h2, h3 {
 .reveal-stagger.visible > *:nth-child(5) { animation: fade-up var(--duration-slow) 320ms ease forwards; }
 .reveal-stagger.visible > *:nth-child(6) { animation: fade-up var(--duration-slow) 400ms ease forwards; }
 
-/* ─── Focus ring ─────────────────────────────────────────────────── */
+/* ─── Skip link (accessibility) ─────────────────────────────────── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  padding: 0.5rem 1rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.875rem;
+  border-radius: 0 0 6px 6px;
+  text-decoration: none;
+  z-index: 9999;
+  transition: top 200ms ease;
+}
+.skip-link:focus { top: 0; }
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 3px;
