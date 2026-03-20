@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { getTranslation, toLocale } from '../i18n/ui';
 
 interface Props {
   locale?: 'es' | 'en';
@@ -7,15 +8,10 @@ interface Props {
   description?: string;
 }
 
-const {
-  locale = 'es',
-  title = locale === 'es'
-    ? 'Diego Rios — Full-Stack Developer'
-    : 'Diego Rios — Full-Stack Developer',
-  description = locale === 'es'
-    ? 'Desarrollador Full-Stack especializado en backend, mobile y sistemas distribuidos. APIs con NestJS, apps con Flutter, infraestructura con PostgreSQL y Firebase.'
-    : 'Full-Stack Developer specialized in backend, mobile, and distributed systems. APIs with NestJS, apps with Flutter, infrastructure with PostgreSQL and Firebase.',
-} = Astro.props;
+const { locale = 'es', title: titleProp, description: descProp } = Astro.props;
+const t = getTranslation(toLocale(locale));
+const title       = titleProp       ?? t.meta.title;
+const description = descProp        ?? t.meta.description;
 
 const canonicalES = Astro.site ? new URL('/', Astro.site).href : '/';
 const canonicalEN = Astro.site ? new URL('/en/', Astro.site).href : '/en/';
@@ -99,11 +95,9 @@ const canonical   = locale === 'es' ? canonicalES : canonicalEN;
             }
           });
         },
-        { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+        { threshold: 0.1, rootMargin: '0px 0px -20px 0px' }
       );
 
-      // Observe all .reveal elements — including those inside hero
-      // Hero elements should animate on load, so we trigger them immediately
       document.querySelectorAll('.reveal, .reveal-stagger').forEach((el) => {
         observer.observe(el);
       });

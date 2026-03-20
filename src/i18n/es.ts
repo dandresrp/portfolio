@@ -110,7 +110,7 @@ const es = {
 
   // ─── Footer ────────────────────────────────────────────────────────
   footer: {
-    copy: '© 2025 Diego Rios. Todos los derechos reservados.',
+    copy: `© ${new Date().getFullYear()} Diego Rios. Todos los derechos reservados.`,
   },
 } as const;
 

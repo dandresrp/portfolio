@@ -112,7 +112,7 @@ const en: TranslationKeys = {
 
   // ─── Footer ────────────────────────────────────────────────────────
   footer: {
-    copy: '© 2025 Diego Rios. All rights reserved.',
+    copy: `© ${new Date().getFullYear()} Diego Rios. All rights reserved.`,
   },
 };
 
