@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  locale?: 'es' | 'en';
+  title?: string;
+  description?: string;
+}
+
+const {
+  locale = 'es',
+  title = locale === 'es'
+    ? 'Diego Rios — Full-Stack Developer'
+    : 'Diego Rios — Full-Stack Developer',
+  description = locale === 'es'
+    ? 'Desarrollador Full-Stack especializado en backend, mobile y sistemas distribuidos. APIs con NestJS, apps con Flutter, infraestructura con PostgreSQL y Firebase.'
+    : 'Full-Stack Developer specialized in backend, mobile, and distributed systems. APIs with NestJS, apps with Flutter, infrastructure with PostgreSQL and Firebase.',
+} = Astro.props;
+
+const canonicalES = Astro.site ? new URL('/', Astro.site).href : '/';
+const canonicalEN = Astro.site ? new URL('/en/', Astro.site).href : '/en/';
+const canonical   = locale === 'es' ? canonicalES : canonicalEN;
+---
+
+<!doctype html>
+<html lang={locale} class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO -->
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang for bilingual SEO -->
+    <link rel="alternate" hreflang="es" href={canonicalES} />
+    <link rel="alternate" hreflang="en" href={canonicalEN} />
+    <link rel="alternate" hreflang="x-default" href={canonicalES} />
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content={canonical} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:locale"      content={locale === 'es' ? 'es_ES' : 'en_US'} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Google Fonts preconnect (performance) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!--
+      Dark mode anti-flash script.
+      Runs synchronously before the first paint to avoid a flash of
+      unstyled content. Reads from localStorage; falls back to the
+      user's OS preference.
+    -->
+    <script is:inline>
+      (function () {
+        try {
+          var stored = localStorage.getItem('theme');
+          var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+          var theme = stored ?? (prefersDark ? 'dark' : 'light');
+          if (theme === 'dark') {
+            document.documentElement.classList.add('dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+          }
+        } catch (_) {}
+      })();
+    </script>
+  </head>
+
+  <body>
+    <slot />
+  </body>
+</html>

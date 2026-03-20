@@ -1,0 +1,152 @@
+/* ─── Google Fonts (must come before all other rules) ────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300;1,9..40,400&display=swap');
+
+@import "tailwindcss";
+
+/* ─── Theme: Custom properties via Tailwind v4 CSS config ────────── */
+@theme {
+  /* Fonts */
+  --font-serif: 'Instrument Serif', Georgia, serif;
+  --font-sans:  'DM Sans', system-ui, sans-serif;
+
+  /* Brand accent */
+  --color-accent:       #a78bfa; /* violet-400 — dark mode */
+  --color-accent-light: #7c3aed; /* violet-600 — light mode */
+
+  /* Neutral scale (used as design tokens) */
+  --color-surface-0:  #0a0a0a;
+  --color-surface-1:  #111111;
+  --color-surface-2:  #171717;
+  --color-border:     #262626;
+
+  /* Animation durations */
+  --duration-fast:   150ms;
+  --duration-base:   250ms;
+  --duration-slow:   400ms;
+}
+
+/* ─── Dark / Light mode via class strategy ───────────────────────── */
+/*
+  Tailwind v4 uses `@variant dark` and the `dark` class on <html>.
+  We declare CSS custom properties here so components can reference
+  semantic tokens instead of hard-coded colour values.
+*/
+
+:root {
+  --bg:          #fafafa;
+  --bg-alt:      #ffffff;
+  --bg-card:     #ffffff;
+  --text:        #171717;
+  --text-muted:  #525252;
+  --text-faint:  #a3a3a3;
+  --accent:      #7c3aed;
+  --accent-rgb:  124, 58, 237;
+  --border:      #e5e5e5;
+  --border-hover:#a3a3a3;
+}
+
+.dark {
+  --bg:          #0a0a0a;
+  --bg-alt:      #111111;
+  --bg-card:     #111111;
+  --text:        #e5e5e5;
+  --text-muted:  #a3a3a3;
+  --text-faint:  #525252;
+  --accent:      #a78bfa;
+  --accent-rgb:  167, 139, 250;
+  --border:      #262626;
+  --border-hover:#404040;
+}
+
+/* ─── Base styles ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg);
+  color: var(--text);
+  transition:
+    background-color var(--duration-base) ease,
+    color var(--duration-base) ease;
+  line-height: 1.7;
+}
+
+/* ─── Typography utilities ───────────────────────────────────────── */
+.font-serif {
+  font-family: var(--font-serif);
+}
+
+h1, h2, h3 {
+  font-family: var(--font-serif);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+/* ─── Semantic colour utilities ──────────────────────────────────── */
+.text-primary   { color: var(--text); }
+.text-muted     { color: var(--text-muted); }
+.text-faint     { color: var(--text-faint); }
+.text-accent    { color: var(--accent); }
+.bg-base        { background-color: var(--bg); }
+.bg-alt         { background-color: var(--bg-alt); }
+.bg-card        { background-color: var(--bg-card); }
+.border-subtle  { border-color: var(--border); }
+
+/* ─── Scroll-reveal animation ────────────────────────────────────── */
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  opacity: 0;
+}
+
+.reveal.visible {
+  animation: fade-up var(--duration-slow) ease forwards;
+}
+
+/* Staggered children */
+.reveal-stagger > * {
+  opacity: 0;
+}
+.reveal-stagger.visible > *:nth-child(1) { animation: fade-up var(--duration-slow) 0ms   ease forwards; }
+.reveal-stagger.visible > *:nth-child(2) { animation: fade-up var(--duration-slow) 80ms  ease forwards; }
+.reveal-stagger.visible > *:nth-child(3) { animation: fade-up var(--duration-slow) 160ms ease forwards; }
+.reveal-stagger.visible > *:nth-child(4) { animation: fade-up var(--duration-slow) 240ms ease forwards; }
+.reveal-stagger.visible > *:nth-child(5) { animation: fade-up var(--duration-slow) 320ms ease forwards; }
+.reveal-stagger.visible > *:nth-child(6) { animation: fade-up var(--duration-slow) 400ms ease forwards; }
+
+/* ─── Focus ring ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ─── Selection ──────────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(var(--accent-rgb), 0.2);
+  color: var(--text);
+}
+
+/* ─── Scrollbar (subtle, Webkit) ─────────────────────────────────── */
+::-webkit-scrollbar        { width: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg); }
+::-webkit-scrollbar-thumb  { background: var(--border); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--border-hover); }
