@@ -1,0 +1,155 @@
+---
+import { getTranslation, toLocale } from '../i18n/ui';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const t = getTranslation(toLocale(locale));
+const { cta } = t;
+---
+
+<section class="cta" aria-label={locale === 'es' ? 'Llamada a la acción' : 'Call to action'}>
+  <div class="cta__inner reveal">
+
+    <p class="cta__eyebrow">
+      <span class="cta__eyebrow-line" aria-hidden="true"></span>
+      {locale === 'es' ? 'Freelance' : 'Freelance'}
+      <span class="cta__eyebrow-line" aria-hidden="true"></span>
+    </p>
+
+    <h2 class="cta__title">{cta.title}</h2>
+    <p class="cta__subtitle">{cta.subtitle}</p>
+
+    <a href={cta.buttonHref} class="cta__btn">
+      {cta.button}
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M5 12h14M12 5l7 7-7 7"/>
+      </svg>
+    </a>
+
+  </div>
+</section>
+
+<style>
+  .cta {
+    padding: 7rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    /* Subtle texture: very faint radial glow from center */
+    background-color: var(--bg);
+  }
+
+  /* Decorative radial accent glow */
+  .cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      ellipse 60% 50% at 50% 50%,
+      rgba(var(--accent-rgb), 0.06) 0%,
+      transparent 70%
+    );
+    pointer-events: none;
+  }
+
+  /* Top & bottom borders to frame the section */
+  .cta::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    pointer-events: none;
+  }
+
+  /* ── Inner ─────────────────────────────────────────────────────── */
+  .cta__inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+  }
+
+  /* ── Eyebrow ───────────────────────────────────────────────────── */
+  .cta__eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0;
+  }
+
+  .cta__eyebrow-line {
+    display: block;
+    width: 32px;
+    height: 1px;
+    background-color: var(--accent);
+    opacity: 0.4;
+    flex-shrink: 0;
+  }
+
+  /* ── Title ─────────────────────────────────────────────────────── */
+  .cta__title {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    font-weight: 400;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  /* ── Subtitle ──────────────────────────────────────────────────── */
+  .cta__subtitle {
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    color: var(--text-muted);
+    max-width: 480px;
+    margin: 0;
+  }
+
+  /* ── Button ────────────────────────────────────────────────────── */
+  .cta__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.75rem;
+    border-radius: 6px;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    text-decoration: none;
+    background-color: var(--text);
+    color: var(--bg);
+    border: 1px solid var(--text);
+    transition:
+      background-color 200ms ease,
+      color 200ms ease,
+      border-color 200ms ease,
+      gap 200ms ease,
+      transform 150ms ease;
+  }
+
+  .cta__btn:hover {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+    gap: 0.75rem;
+  }
+
+  .cta__btn:active {
+    transform: translateY(1px);
+  }
+</style>

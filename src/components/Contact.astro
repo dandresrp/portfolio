@@ -1,0 +1,234 @@
+---
+import SectionHeading from './SectionHeading.astro';
+import { getTranslation, toLocale } from '../i18n/ui';
+
+interface Props {
+  locale?: string;
+}
+
+const { locale = 'es' } = Astro.props;
+const t = getTranslation(toLocale(locale));
+const { contact } = t;
+---
+
+<section
+  id={locale === 'en' ? 'contact' : 'contacto'}
+  class="contact"
+  aria-label={contact.label}
+>
+  <div class="contact__inner">
+
+    <SectionHeading
+      label={contact.label}
+      title={contact.title}
+      subtitle={contact.subtitle}
+    />
+
+    <!-- Contact links -->
+    <ul class="contact__links reveal-stagger" role="list">
+
+      <!-- Email -->
+      <li class="contact__item">
+        <a
+          href={`mailto:${contact.email}`}
+          class="contact__link"
+          aria-label={`${contact.links.email}: ${contact.email}`}
+        >
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <rect width="20" height="16" x="2" y="4" rx="2"/>
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </span>
+          <div class="contact__link-body">
+            <span class="contact__link-label">{contact.links.email}</span>
+            <span class="contact__link-value">{contact.email}</span>
+          </div>
+          <span class="contact__link-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+
+      <!-- WhatsApp -->
+      <li class="contact__item">
+        <a
+          href={contact.whatsappHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact__link"
+          aria-label={`${contact.links.whatsapp}: ${contact.whatsapp} (${locale === 'es' ? 'se abre en nueva pestaña' : 'opens in new tab'})`}
+        >
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 13a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 2.22h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 9.91a16 16 0 0 0 6 6l.92-.86a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+            </svg>
+          </span>
+          <div class="contact__link-body">
+            <span class="contact__link-label">{contact.links.whatsapp}</span>
+            <span class="contact__link-value">{contact.whatsapp}</span>
+          </div>
+          <span class="contact__link-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+
+      <!-- GitHub -->
+      <li class="contact__item">
+        <a
+          href={contact.githubHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact__link"
+          aria-label={`${contact.links.github}: ${contact.github} (${locale === 'es' ? 'se abre en nueva pestaña' : 'opens in new tab'})`}
+        >
+          <span class="contact__link-icon" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65S8.93 17.38 9 18v4"/>
+              <path d="M9 18c-4.51 2-5-2-7-2"/>
+            </svg>
+          </span>
+          <div class="contact__link-body">
+            <span class="contact__link-label">{contact.links.github}</span>
+            <span class="contact__link-value">{contact.github}</span>
+          </div>
+          <span class="contact__link-arrow" aria-hidden="true">↗</span>
+        </a>
+      </li>
+
+    </ul>
+
+    <!-- Confidentiality note -->
+    <aside class="contact__note reveal" aria-label={locale === 'es' ? 'Nota de confidencialidad' : 'Confidentiality note'}>
+      <span class="contact__note-icon" aria-hidden="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="11" x="3" y="11" rx="2" ry="2"/>
+          <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+        </svg>
+      </span>
+      <p class="contact__note-text">{contact.confidentiality}</p>
+    </aside>
+
+  </div>
+</section>
+
+<style>
+  .contact {
+    padding: 6rem 1.5rem;
+    background-color: var(--bg-alt);
+    border-top: 1px solid var(--border);
+  }
+
+  .contact__inner {
+    max-width: 760px;
+    margin: 0 auto;
+  }
+
+  /* ── Links list ────────────────────────────────────────────────── */
+  .contact__links {
+    list-style: none;
+    margin: 0 0 2.5rem;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact__item {
+    border-bottom: 1px solid var(--border);
+  }
+
+  .contact__item:first-child {
+    border-top: 1px solid var(--border);
+  }
+
+  /* ── Link row ──────────────────────────────────────────────────── */
+  .contact__link {
+    display: grid;
+    grid-template-columns: 2.5rem 1fr auto;
+    align-items: center;
+    gap: 1.25rem;
+    padding: 1.5rem 0;
+    text-decoration: none;
+    transition: background-color 200ms ease;
+  }
+
+  .contact__link:hover .contact__link-label {
+    color: var(--accent);
+  }
+
+  .contact__link:hover .contact__link-arrow {
+    transform: translate(2px, -2px);
+    color: var(--accent);
+  }
+
+  /* ── Icon ──────────────────────────────────────────────────────── */
+  .contact__link-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    transition: border-color 200ms ease, color 200ms ease;
+  }
+
+  .contact__link:hover .contact__link-icon {
+    border-color: var(--border-hover);
+    color: var(--text);
+  }
+
+  /* ── Body ──────────────────────────────────────────────────────── */
+  .contact__link-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+
+  .contact__link-label {
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: var(--text);
+    transition: color 200ms ease;
+  }
+
+  .contact__link-value {
+    font-size: 0.8375rem;
+    color: var(--text-faint);
+    font-family: 'DM Mono', 'Fira Code', monospace;
+  }
+
+  /* ── Arrow ─────────────────────────────────────────────────────── */
+  .contact__link-arrow {
+    font-size: 1rem;
+    color: var(--text-faint);
+    transition: transform 200ms ease, color 200ms ease;
+    flex-shrink: 0;
+  }
+
+  /* ── Confidentiality note ──────────────────────────────────────── */
+  .contact__note {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background-color: var(--bg-card);
+  }
+
+  .contact__note-icon {
+    display: flex;
+    align-items: center;
+    color: var(--text-faint);
+    flex-shrink: 0;
+    margin-top: 0.1rem;
+  }
+
+  .contact__note-text {
+    font-size: 0.8375rem;
+    line-height: 1.65;
+    color: var(--text-faint);
+    margin: 0;
+    font-style: italic;
+  }
+</style>
