@@ -2,7 +2,7 @@ const es = {
   // ─── Meta / SEO ────────────────────────────────────────────────────
   meta: {
     title:       'Diego Rios — Full-Stack Developer',
-    description: 'Desarrollador Full-Stack especializado en backend, mobile y sistemas distribuidos. APIs con NestJS, apps con Flutter, infraestructura con PostgreSQL, Firebase y pipelines CI/CD en GCP y Docker.',
+    description: 'Desarrollador Full-Stack especializado en backend, mobile y sistemas distribuidos. APIs REST y GraphQL con NestJS, apps con Flutter, bases de datos SQL y MongoDB, pipelines CI/CD en GCP y Docker.',
   },
 
   // ─── Navbar ────────────────────────────────────────────────────────
@@ -21,7 +21,7 @@ const es = {
     subtitle: 'Backend & Mobile',
     description:
       'Desarrollo APIs escalables, aplicaciones móviles y sistemas integrados para negocios reales.',
-    techStack: ['NestJS', 'Flutter', 'PostgreSQL', 'MySQL', 'Prisma', 'Firebase', 'MinIO'],
+    techStack: ['NestJS', 'Flutter', 'TypeScript', 'PostgreSQL', 'MySQL', 'MongoDB', 'Prisma', 'Firebase', 'Docker'],
     cta: {
       primary:   'Ver proyectos',
       primaryHref: '#proyectos',
@@ -36,8 +36,8 @@ const es = {
     title:    'Construyo soluciones reales, no solo código.',
     paragraphs: [
       'Desarrollador con 1.5 años de experiencia construyendo soluciones en backend, mobile y sistemas distribuidos.',
-      'He trabajado en ecommerce, sistemas multitenant, integraciones de marketing y aplicaciones móviles en producción. También he participado en procesos de DevOps para integración y despliegue continuo (CI/CD) en entornos de Google Cloud Platform (GCP) y Docker.',
-      'Me especializo en resolver problemas complejos con arquitecturas escalables y eficientes.',
+      'He trabajado en ecommerce, sistemas multitenant, integraciones de marketing y aplicaciones móviles en producción. He colaborado en proyectos internacionales con clientes de Estados Unidos, enfocándome en escalabilidad y estabilidad del sistema. También he participado en procesos de DevOps para integración y despliegue continuo (CI/CD) en entornos de Google Cloud Platform (GCP) y Docker.',
+      'Me especializo en resolver problemas complejos con arquitecturas escalables y eficientes. Contribuyo al diseño de arquitectura y documentación técnica, y me comunico en inglés (C1) con equipos y clientes internacionales.',
     ],
   },
 
@@ -56,7 +56,7 @@ const es = {
       {
         number: '01',
         title:  'Desarrollo de APIs',
-        description: 'APIs REST robustas y escalables con NestJS, manejo de autenticación, validación y documentación.',
+        description: 'APIs REST y GraphQL robustas y escalables con NestJS o Express, manejo de autenticación, validación y documentación.',
       },
       {
         number: '02',
