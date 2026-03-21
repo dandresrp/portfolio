@@ -4,7 +4,7 @@ const en: TranslationKeys = {
   // ─── Meta / SEO ────────────────────────────────────────────────────
   meta: {
     title:       'Diego Rios — Full-Stack Developer',
-    description: 'Full-Stack Developer specialized in backend, mobile, and distributed systems. APIs with NestJS, apps with Flutter, infrastructure with PostgreSQL and Firebase.',
+    description: 'Full-Stack Developer specialized in backend, mobile, and distributed systems. APIs with NestJS, apps with Flutter, infrastructure with PostgreSQL, Firebase, and CI/CD pipelines on GCP and Docker.',
   },
 
   // ─── Navbar ────────────────────────────────────────────────────────
@@ -38,7 +38,7 @@ const en: TranslationKeys = {
     title:    'I build real solutions, not just code.',
     paragraphs: [
       'Developer with 1.5 years of experience building backend, mobile, and distributed systems solutions.',
-      'I have worked on e-commerce platforms, multitenant systems, marketing integrations, and mobile apps in production.',
+      'I have worked on e-commerce platforms, multitenant systems, marketing integrations, and mobile apps in production. I have also participated in DevOps processes for continuous integration and deployment (CI/CD) on Google Cloud Platform (GCP) and Docker.',
       'I specialize in solving complex problems with scalable and efficient architectures.',
     ],
   },
@@ -79,6 +79,11 @@ const en: TranslationKeys = {
         number: '05',
         title:  'System Optimization',
         description: 'Analysis, refactoring, and performance improvements for legacy or growing systems.',
+      },
+      {
+        number: '06',
+        title:  'DevOps & CI/CD',
+        description: 'Continuous integration and deployment pipelines on Google Cloud Platform (GCP) and Docker containers for reliable production environments.',
       },
     ],
   },
